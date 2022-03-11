@@ -19,6 +19,12 @@ const MetaMask = () => {
   };
 
   const updataAccount = async () => {
+    try {
+      if (!window.ethereum) 
+        throw new Error("Please install MetaMask")
+    } catch (err) {
+      console.log(err.message)
+    }
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const signer = provider.getSigner();
